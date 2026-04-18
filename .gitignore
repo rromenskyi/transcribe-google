@@ -1,0 +1,10 @@
+.DS_Store
+
+# Build outputs
+bin/
+dist/
+transcribe-google
+
+# Go
+coverage.out
+*.test
