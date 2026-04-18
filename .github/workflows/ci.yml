@@ -29,7 +29,13 @@ jobs:
           fi
 
       - name: Verify module metadata
-        run: go mod tidy && git diff --exit-code go.mod go.sum
+        run: |
+          go mod tidy
+          if [ -f go.sum ]; then
+            git diff --exit-code -- go.mod go.sum
+          else
+            git diff --exit-code -- go.mod
+          fi
 
       - name: Build CLI
-        run: go build -v ./app
+        run: go build -v -o /tmp/transcribe-google ./app
